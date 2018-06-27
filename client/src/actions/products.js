@@ -53,5 +53,8 @@ export const deleteProduct = (productId) => (dispatch) => {
 export const updateProduct = (productId, updates) => (dispatch) => {
   request
     .put(`${baseUrl}/products/${productId}`)
-    .send(updates)
+    .send(updates).then(response => dispatch({
+      type: UPDATE_PRODUCT,
+      payload: updates
+    }))
 }

@@ -20,6 +20,10 @@ class ProductDetails extends PureComponent {
     edit: !this.state.edit
   })
 }
+updateProduct = (product) => {
+  this.props.updateProduct(this.props.match.params.id, product)
+  this.toggleEdit()
+}
 
   componentWillMount(props) {
     this.props.fetchProduct(this.props.match.params.id)
@@ -33,7 +37,7 @@ class ProductDetails extends PureComponent {
         <h1>{ product.name }</h1>
         {
      this.state.edit &&
-     <ProductForm initialValues={product} onSubmit={null} />
+     <ProductForm initialValues={product} onSubmit={this.updateProduct} />
    }
         {
           !this.state.edit &&
